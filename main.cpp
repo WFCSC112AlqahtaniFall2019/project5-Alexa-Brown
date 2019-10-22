@@ -1,4 +1,5 @@
 #include <iostream>
+#include <time.h>
 #include <string>
 #include <cctype>
 #include "Card.h"
@@ -11,6 +12,12 @@ int main() {
     string response;
     int compValue, userValue, nWin = 0, nLoss = 0, nTie = 0;
     srand(time(NULL));
+    Deck d; //object of deck
+    d.populate();
+//testing operators
+    if (1>0){
+        cout << "true" << endl;
+    }
 
     play = true;
     while(play) {
@@ -18,8 +25,11 @@ int main() {
         compValue = rand() % 52;
         userValue = rand() % 52;
 
+        d.shuffle();
         // get user's bet
-        cout << "Computer's value is " << compValue << endl;
+        cout << "Computer's value is ";
+        (d.pickCard(compValue).print());
+        cout << endl;
         invalid = true;
         while(invalid) {
             cout << "Do you think your number is higher or lower? (H/L)" << endl;
@@ -50,7 +60,10 @@ int main() {
             cout << "It's a tie:" << endl;
             nTie++;
         }
-        cout << "\tyour value is " << userValue << endl;
+
+        cout << "\tyour value is ";
+        (d.pickCard(userValue).print());
+        cout << endl;
 
         // ask user to play again
         invalid = true;
