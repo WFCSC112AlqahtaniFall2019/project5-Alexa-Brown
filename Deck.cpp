@@ -11,6 +11,12 @@ Deck::Deck() {
    // cards.populate();-- have to populate the deck
     cardsLeft = 52; //changes as you draw cards from the deck, then decreases
 }
+Deck::Deck(const Deck& C){
+    cout << "Copy Constructor called." << endl;
+    cards = new Card;
+    *cards = *(C.cards);
+    arraySize = C.arraySize;
+}
 Deck::~Deck(){
     cout << "Destructor called" << endl;
     delete cards;
@@ -28,7 +34,10 @@ void Deck::populate() {
 
 void Deck::shuffle() {
     for (int i = 0; i < 52; i++){
-       swap (cards[i], cards[i+1]);
+       while ((cardsLeft)*(cardsLeft) > 0){
+           swap (cards[i], cards[i+1]);
+           cardsLeft--;
+       }
     }
 }
 Card Deck::pickCard(int value) {
@@ -42,13 +51,11 @@ void Deck::swap(Card num1, Card num2) { //changes & to *
     num2 = temp; // copy the saved value of num1 --- switching their values not their pointers
 }
 
-
-
-/*int Deck::operator=(int a) {
-    cout << "> operator called" << endl;
-    if (this->rank = a) {
-        return this->rank;
-    } else if (this->suit > a) {
-        return this->rank;
+bool Deck::add(){
+    if (cardsLeft == 0){
+        return false;
     }
-}*/
+    else{
+        //add a card
+    }
+}

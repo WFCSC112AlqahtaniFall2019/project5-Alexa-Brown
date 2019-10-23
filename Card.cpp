@@ -10,7 +10,7 @@ Card::Card(int x, int y){
     suit = y;
 }
 
-bool Card::operator<(int a){ //may need to be bool?
+bool Card::operator<(int a){ //don't need a case if they are equal because the cards will always have a different rank or suit
     cout << "< operator called" << endl;
     if (this->rank < a){
         return true;
@@ -18,12 +18,12 @@ bool Card::operator<(int a){ //may need to be bool?
     if (this-> rank > a){
         return false;
     }
-    else if (this->suit < a){
-        return a;
+    /*else if (this->suit < a){
+        return true;
     }
     else{
-        return a;
-    }
+        return false;
+    }*/
 }
 bool Card::operator>(int a) {
     cout << "> operator called" << endl;
@@ -32,7 +32,6 @@ bool Card::operator>(int a) {
     } else if (this->suit > a) {
         return false;
     }
-    //and a case if they're equal
 }
 
 string Card::specificValue (int w, int z){

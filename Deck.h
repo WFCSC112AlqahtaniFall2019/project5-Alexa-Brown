@@ -12,13 +12,14 @@ private:
 
 public:
     Deck(); //default constructor
-    ~Deck();
-    void shuffle();
-    void populate ();
-    Card pickCard (int value);
-    void swap(Card num1, Card num2);
-
+    ~Deck();//destructor
+    Deck(const Deck& C);//copy constructor
+    void shuffle(); //shuffles the deck
+    void populate (); //fills the deck with cards
+    Card pickCard (int value); //returns the card based on the random number generated
+    void swap(Card num1, Card num2); //helps shuffle the deck
+    bool add();
 };
-//int Deck::operator=(int a);
+
 
 #endif //BLINDMANSBLUFF_DECK_H

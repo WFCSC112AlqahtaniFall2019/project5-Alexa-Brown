@@ -14,10 +14,12 @@ int main() {
     srand(time(NULL));
     Deck d; //object of deck
     d.populate();
-//testing operators
+    //testing operators
     if (1>0){
         cout << "true" << endl;
     }
+
+    //**need to figure out how to get Ace to be the lowest card- might be in the overloaded?**
 
     play = true;
     while(play) {
@@ -83,6 +85,7 @@ int main() {
                 cout << "Invalid response..." << endl;
                 invalid = true;
             }
+
         }
     }
 
