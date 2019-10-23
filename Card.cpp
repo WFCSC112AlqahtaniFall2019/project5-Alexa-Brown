@@ -8,40 +8,48 @@ Card::Card(){
 Card::Card(int x, int y){
     rank = x;
     suit = y;
-}
+} //alternate constructor
 
-bool Card::operator<(int a){ //don't need a case if they are equal because the cards will always have a different rank or suit
-    cout << "< operator called" << endl;
-    if (this->rank < a){
+bool Card::operator<(Card c){ //don't need a case if they are equal because the cards will always have a different rank or suit?
+    //cout << "< operator called" << endl;
+    if (this->rank < c.rank){
         return true;
     }
-    if (this-> rank > a){
+    if (this-> rank > c.rank){
         return false;
     }
-    /*else if (this->suit < a){
-        return true;
-    }
-    else{
-        return false;
-    }*/
-}
-bool Card::operator>(int a) {
-    cout << "> operator called" << endl;
-    if (this->rank > a) {
-        return true;
-    } else if (this->suit > a) {
-        return false;
+    else if (this->rank == c.rank){
+        if (this->suit < c.suit){
+            return true;
+        }
+        else if (this->suit > c.suit){
+            return false;
+        }
     }
 }
 
-string Card::specificValue (int w, int z){
+bool Card::operator>(Card c) {
+   // cout << "> operator called" << endl;
+    if (this->rank > c.rank) {
+        return true;
+    } else if (this->rank < c.rank) {
+        return false;
+    }
+    else if (this->rank == c.rank){
+        if (this->suit > c.suit){
+            return true;
+        }
+        else if (this->suit < c.suit){
+            return false;
+        }
+    }
+}
+
+string Card::specificValue (int w, int z){ //returns the value of the card at the randomly selected integer index
   string value;
   value = ranks [w] + "of " + suits[z];
-  return value;
-
-    }
-
-void Card::print(){
-    cout << ranks[rank] + " of " + suits [suit];
+  //return value;
 }
-
+string Card::print(){ //prints the card
+    return ranks[rank] + " of " + suits [suit];
+}
