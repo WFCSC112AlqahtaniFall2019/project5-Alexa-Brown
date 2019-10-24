@@ -16,10 +16,10 @@ private:
 public:
     Card(); //default constructor
     Card(int rankNum, int cardSuit);
-    bool operator<(int a);
-    bool operator>(int a);
+    bool operator<(Card c);
+    bool operator>(Card c);
     string specificValue (int w, int z);
-    void print();
+    string print();
 
 };
 

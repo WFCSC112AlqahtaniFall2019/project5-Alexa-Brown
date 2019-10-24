@@ -16,9 +16,10 @@ public:
     Deck(const Deck& C);//copy constructor
     void shuffle(); //shuffles the deck
     void populate (); //fills the deck with cards
-    Card pickCard (int value); //returns the card based on the random number generated
-    void swap(Card num1, Card num2); //helps shuffle the deck
-    bool add();
+    Card pickCard (); //returns the card based on the random number generated
+    bool add(Card discarded); //to add a card to the deck if able to- returns false if no space
+    Deck& operator= (const Deck& rhs);
+    void Discardprint();
 };
 
 

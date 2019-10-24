@@ -10,9 +10,12 @@ int main() {
     cout << "Welcome to Blind Man's Bluff" << endl << endl;
     bool play, invalid, guessedHigher;
     string response;
-    int compValue, userValue, nWin = 0, nLoss = 0, nTie = 0;
+    int turn = 0;
+    Card compValue, userValue;
+    int nWin = 0, nLoss = 0, nTie = 0;
     srand(time(NULL));
     Deck d; //object of deck
+    Deck discard;
     d.populate();
     //testing operators
     if (1>0){
@@ -24,13 +27,14 @@ int main() {
     play = true;
     while(play) {
         // assign values to computer and user
-        compValue = rand() % 52;
-        userValue = rand() % 52;
-
+        compValue = d.pickCard();
+        discard.add(compValue);
+        userValue = d.pickCard();
+        discard.add(userValue);
         d.shuffle();
         // get user's bet
         cout << "Computer's value is ";
-        (d.pickCard(compValue).print());
+        cout << compValue.print();
         cout << endl;
         invalid = true;
         while(invalid) {
@@ -49,6 +53,7 @@ int main() {
                 cout << "Invalid response..." << endl;
                 invalid = true;
             }
+            turn = turn + 2;
         }
 
         // determine outcome
@@ -59,18 +64,20 @@ int main() {
             cout << "Sorry, you're wrong:" << endl;
             nLoss++;
         } else {
+
             cout << "It's a tie:" << endl;
             nTie++;
         }
 
         cout << "\tyour value is ";
-        (d.pickCard(userValue).print());
+        cout << userValue.print();
         cout << endl;
+        discard.Discardprint();
 
         // ask user to play again
         invalid = true;
         while(invalid) {
-            cout << "Play again? (Y/N)" << endl;
+            cout << endl << "Play again? (Y/N)" << endl;
             cin >> response;
             if (toupper(response.at(0)) == 'Y') {
                 // continue playing
@@ -86,6 +93,10 @@ int main() {
                 invalid = true;
             }
 
+        }
+        if (turn >= 52){
+            invalid = false;
+            break;
         }
     }
 
